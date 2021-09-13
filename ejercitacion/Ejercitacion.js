@@ -8,8 +8,8 @@
 //↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ 
 /* function Persona(){}
  */
-class Persona{
-    constructor(nombre, apellido, edad, pasaTiempo, email, password){
+class Persona {
+    constructor(nombre, apellido, edad, pasaTiempo, email, password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -17,17 +17,17 @@ class Persona{
         this.email = email;
         this.password = password;
     }
-    saludar(){
+    saludar() {
         return `Hola ${this.nombre}`;
     }
-    mayoriaDeEdad(){
+    mayoriaDeEdad() {
         return this.edad > 18 ? true : false;
     }
-    pasaTiempos(uno, dos, tres){
-        let algunosPasatiempos = [uno = "no hace nada", dos= "capaz hace algo", tres = "nose nada", ...this.pasaTiempo]
+    pasaTiempos(uno, dos, tres) {
+        let algunosPasatiempos = [uno = "no hace nada", dos = "capaz hace algo", tres = "nose nada", ...this.pasaTiempo]
         return algunosPasatiempos;
     }
-    login(email, password){
+    login(email, password) {
         let logueado = (email === this.email && password === this.password) ? "logueado" : "404";
         return logueado
     }
@@ -51,28 +51,28 @@ class Persona{
 //↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ ↓↓↓↓↓↓↓↓↓ 
 //function Empleado(){}
 
-class Empleado extends Persona{
-    constructor(nombre, apellido, edad, pasaTiempo, email, password, empresa, cargo, salario){
+class Empleado extends Persona {
+    constructor(nombre, apellido, edad, pasaTiempo, email, password, empresa, cargo, salario) {
         super(nombre, apellido, edad, pasaTiempo, email, password)
         this.empresa = empresa;
         this.cargo = cargo;
         this.salario = salario;
     }
-    cantidadVacaciones(){
-        if(this.cargo === "jefe"){
+    cantidadVacaciones() {
+        if (this.cargo === "jefe") {
             return 20;
-        } else if(this.cargo === "ayudante"){
+        } else if (this.cargo === "ayudante") {
             return 0;
-        } else if (this.cargo === "asistente"){
+        } else if (this.cargo === "asistente") {
             return 10;
         }
     }
-    saludar(){
+    saludar() {
         return `${this.nombre} ${this.apellido} ${this.cargo}`
     }
-    acceso(){        
+    acceso() {
         let islogued = super.login(this.email, this.password);
-        if(islogued === "logueado"){
+        if (islogued === "logueado") {
             return (this.cargo === "jefe" || this.cargo === "ayudante") ? `bienvenido ${this.cargo}` : "404";
         }
     }
@@ -88,21 +88,21 @@ class Empleado extends Persona{
 // 3. Aplica spread operator sobre el 'array' recibido para generar la 'listaCompras'
 // 4. Cambiar el 'if' - 'else' por un 'operador ternario'.
 
-function pasarAES6(objeto, array) {
-    if(objeto){
-        var nuevoObjeto = {
-            nombre: objeto.nombre,
-            apellido: objeto.apellido,
-            edad:  objeto.edad,
+pasarAES6 = (objeto, array) => {
+    var { nombre, apellido, edad } = objeto;
+    var resultado = (objeto) ?
+        nuevoObjeto = {
+            nombre,
+            apellido,
+            edad,
             ciudad: "san salvador",
             pais: "argentina",
-            listaCompras: array.concat('pan').concat('arroz').concat('pasta')
+            listaCompras: [...array, 'pan', 'arroz', 'pasta']
         }
-        return nuevoObjeto
-    }else {
-        return "non object"
-    }
-} 
+        : "non object";
+
+    return resultado
+}
 
 // NO MODIFIQUES NADA DE AQUI ABAJO ↓↓↓↓↓↓↓↓↓ 
 module.exports = {
